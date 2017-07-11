@@ -1,0 +1,38 @@
+/*ELEMENTS*/
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,Unbuntu, Cantarell,Helvetica,Neue, sans-serif;
+    /*the above dynamically styles font based on the machine*/
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+/*CLASSES*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-title {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  /*text-decoration: underline;*/
+}
+
+.nav-pills {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-pills li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
