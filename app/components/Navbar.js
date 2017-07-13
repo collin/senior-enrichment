@@ -1,6 +1,4 @@
 import React from 'react';
-import { Router } from 'react-router';
-import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 function Navbar(props) {
@@ -22,12 +20,10 @@ function Navbar(props) {
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
             <li>
-              <NavLink to="/users" activeClassName="active">users</NavLink>
-              Campuses
+              <NavLink to="/campuses" activeClassName="active">Campuses</NavLink>
             </li>
             <li>
-              <NavLink to="/stories" activeClassName="active">stories</NavLink>
-              Students
+              <NavLink to="/students" activeClassName="active">Students</NavLink>
             </li>
           </ul>
         </div>
