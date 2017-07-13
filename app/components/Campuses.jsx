@@ -13,7 +13,7 @@ export default class Campuses extends Component {
             return (
               <Link className="" to={`${path}`}>
                 <a href={`/Campuses/${campus}`}>{campus}</a>
-                <li><img className="campus-img" src={`${campus}.jpeg`} alt={`${campus}`}/></li>
+                <li><img className="campus-img" src={`/images/${campus}.jpeg`} alt={`${campus}`}/></li>
               </Link>
             )
           })}

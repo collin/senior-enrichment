@@ -48,9 +48,13 @@ li {
   justify-content: center;
 }
 
+.nav-bar {
+  
+}
+
 .nav-pills {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .nav-pills li {
