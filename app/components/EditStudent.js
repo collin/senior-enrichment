@@ -1,23 +1,21 @@
 import React from 'react';
 import ModifyStudentForm from './ModifyStudentForm';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putStudent, deleteStudent } from '../reducers/studentReducer';
 
 
 function EditStudent(props) {
   const matchId = props.match.params.studentId;
-
   const studentToModify = props.students.find(student => student.id === +matchId) || {};
-  const campus = props.campuses.find(campus => campus.id === studentToModify.campusId) || {};
   const campuses = props.campuses
+
   return (
-    <form onSubmit={(e) => props.sendUpdate(e)}>
-      <div>
+    <form onSubmit={props.sendUpdate}>
+      <div className="container">
         <h3>Edit the student's information</h3>
-        <ModifyStudentForm studentToModify={studentToModify} campus={campus} campuses={campuses} />
-        <button className="btn btn-default" type="submit">Submit Updates</button>
-        <button onClick={props.removeStudent}>Delete Student</button>
+        <ModifyStudentForm studentToModify={studentToModify} campuses={campuses} />
+        <button className="btn btn-primary" type="submit">Submit Updates</button>
+        <button className="btn btn-primary" onClick={props.removeStudent}>Delete Student</button>
       </div>
     </form>
   )
@@ -42,7 +40,6 @@ const mapDispatch = (dispatch, ownProps) => {
       .then(() => {
         ownProps.history.push(`/students/${studentId}`)
       })
-      // even calling push directly doesn't work. Not connected to browser somehow
     },
     removeStudent: (e) => {
       e.preventDefault();

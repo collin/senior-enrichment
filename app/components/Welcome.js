@@ -1,25 +1,19 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 
-class Welcome extends React.Component {
-  render () {
+function Welcome () {
     return (
-      <div>
-        <h1>Welcome!</h1>
-        <Link to="/campuses">Campuses</Link>
-        <Link to="/students">Students</Link>
+      <div className="container text-center">
+        <h1>Welcome to the InterGalactic Javascript Academy!</h1>
+        <h3>Click one of the buttons below to learn about more:</h3>
+        <Link className="btn btn-default" to="/campuses">Campuses</Link>
+        <Link className="btn btn-default" to="/students">Students</Link>
 
       </div>
     )
 
-  }
 }
 
-const mapState = null;
+export default Welcome;
 
-const mapDispatch = null;
-
-export default withRouter(connect(mapState, mapDispatch)(Welcome));

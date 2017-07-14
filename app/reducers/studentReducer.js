@@ -6,6 +6,7 @@ const GET_STUDENTS = 'GET_STUDENTS';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const REMOVE_STUDENT = 'REMOVE_STUDENT';
 const ADD_STUDENT = 'ADD_STUDENT';
+const REMOVE_STUDENTS_FROM_CAMPUS = 'REMOVE_STUDENTS_FROM_CAMPUS';
 
 // ACTION CREATORS
 
@@ -37,6 +38,13 @@ export const addStudent = (student) => {
   }
 }
 
+export const removeStudentsFromCampus = (campusId) => {
+  return {
+    type: REMOVE_STUDENTS_FROM_CAMPUS,
+    campusId
+  }
+}
+
 // REDUCERS
 
 const studentReducer = function(students = [], action) {
@@ -64,6 +72,9 @@ const studentReducer = function(students = [], action) {
     case ADD_STUDENT:
       return [...newStudents, action.student];
 
+    case REMOVE_STUDENTS_FROM_CAMPUS:
+      return newStudents.filter(student => student.campusId !== action.campusId)
+
     default:
       return students
   }
@@ -82,11 +93,9 @@ export const fetchStudents = () => dispatch => {
 }
 
 export const putStudent = ({studentName, campusId, studentId}) => dispatch => {
-    console.log('CampusId sent in', campusId)
     return axios.put(`/api/students/${studentId}`, {name: studentName, campusId: campusId})
     .then(res => res.data)
     .then(student => {
-      console.log('Updated Student', student)
       dispatch(updateStudent(student))
     })
     .catch(console.error)
@@ -103,8 +112,8 @@ export const deleteStudent = (studentId) => dispatch => {
 
 }
 
-export const postStudent = ({studentName, campusId}) => dispatch => {
-    return axios.post('/api/students', {name: studentName, campusId})
+export const postStudent = ({studentName, campusId, campusName}) => dispatch => {
+    return axios.post('/api/students', {name: studentName, campusId, campusName})
     .then(res => res.data)
     .then(student => {
       dispatch(addStudent(student))

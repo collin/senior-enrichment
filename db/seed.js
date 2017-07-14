@@ -1,15 +1,15 @@
 const db = require('./index.js')
 const { Student, Campus } = require('./models')
 
-console.log(db.didSync)
-
 db.didSync
   .then(() => {
     const fullstackProm = Campus.create({
       name: 'Fullstack',
+      imageUrl: 'https://pbs.twimg.com/profile_images/694191024416112642/VtJUhbKk.png',
     })
     const MacalesterProm = Campus.create({
       name: 'Macalester',
+      imageUrl: 'https://pbs.twimg.com/profile_images/798867067231354880/4p5iaRIZ.jpg',
     })
     return Promise.all([fullstackProm, MacalesterProm])
   })

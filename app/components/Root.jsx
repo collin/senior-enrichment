@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
-import StudentList from './StudentList';
-import CampusList from './CampusList';
+import AllStudents from './AllStudents';
+import AllCampuses from './AllCampuses';
 import Welcome from './Welcome';
 import EditStudent from './EditStudent';
-import ModifyCampusForm from './ModifyCampusForm';
+import EditCampus from './EditCampus';
 import SingleStudent from './SingleStudent';
 import SingleCampus from './SingleCampus';
 import { fetchCampuses } from '../reducers/campusReducer';
@@ -26,12 +26,12 @@ class Root extends Component {
       <Route component={Navbar} />
       <main>
         <Route exact path="/" component={Welcome} />
-        <Route exact path="/students" component={StudentList} />
-        <Route exact path="/campuses" component={CampusList} />
+        <Route exact path="/students" component={AllStudents} />
+        <Route exact path="/campuses" component={AllCampuses} />
         <Route exact path="/students/:studentId" component={SingleStudent} />
         <Route exact path="/students/:studentId/edit" component={EditStudent} />
         <Route exact path="/campuses/:campusId" component={SingleCampus} />
-        <Route exact path="/campuses/:campusId/edit" component={ModifyCampusForm} />
+        <Route exact path="/campuses/:campusId/edit" component={EditCampus} />
       </main>
     </div>
     </Router>

@@ -21,6 +21,7 @@ module.exports = app
   .use(express.static(resolve(__dirname, '..', 'node_modules')))
   .use('/api', require('./api')) // Serve our api
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html'))) // Send index.html for any other requests.
+  // Error Handling
   .use(function (err, req, res, next) {
     console.error(err, typeof next);
     console.error(err.stack)

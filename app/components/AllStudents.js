@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 class StudentList extends React.Component {
-  // filter according to url
-  // have access to students and campuses
 
   render () {
 
     return (
-    <div>
+    <div className="container">
+      <h1>Current Students</h1>
       <ul>
         {
           this.props.students.map(student => {

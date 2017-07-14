@@ -23,39 +23,25 @@ studentRouter.get('/:studentId', (req, res, next) => {
 });
 
 studentRouter.post('/', (req, res, next) => {
-	Student.create({
-		name: req.body.name,
-		campusId: req.body.campusId
+	Student.create({name: req.body.name})
+	.then((newStudent) => {
+		return newStudent.setCampus(+req.body.campusId)
 	})
 	.then(studentWithCampus => {
 		res.json(studentWithCampus);
 	})
-
-	// Campus.findById(req.body.campusId)
-	// .then(campus => {
-	// 	return Student.create({
-	// 		name: req.body.name
-	// 	})
-	// 	.then(student => {
-	// 		// is addStudent async?
-	// 		return campus.addStudent(student)
-	// 		.then(() => {
-	// 			return student;
-	// 		})
-	// 	})
-	// })
-	// .then(studentWithCampus => {
-	// 	console.log(studentWithCampus)
-	// 	res.json(studentWithCampus);
-	// })
+	.catch(next);
 });
 
 studentRouter.put('/:studentId', (req, res, next) => {
-	const {name, campusId} = req.body
-	req.student.update({name, campusId: +campusId})
+	req.student.update({name: req.body.name})
+	.then(student => {
+		return student.setCampus(+req.body.campusId)
+	})
 	.then(studentWithCampus => {
 		res.json(studentWithCampus);
 	})
+	.catch(next)
 });
 
 studentRouter.delete('/:studentId', (req, res, next) => {

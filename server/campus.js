@@ -1,6 +1,6 @@
 'use strict'
 const campusRouter = require('express').Router()
-const { Student, Campus } = require('../db/models');
+const { Campus } = require('../db/models');
 
 campusRouter.get('/', (req, res, next) => {
   Campus.findAll()
@@ -11,9 +11,12 @@ campusRouter.get('/', (req, res, next) => {
 campusRouter.param('campusId', (req, res, next, campusId) => {
 	Campus.findById(campusId)
 	.then(campus => {
-		if (!campus) next(new Error('campus not found'));
-		req.campus = campus;
-		next();
+		if (!campus) {
+			next(new Error('Campus not found'));
+		} else {
+			req.campus = campus;
+			next();
+		}
 	})
 	.catch(next);
 })
@@ -29,11 +32,19 @@ campusRouter.post('/', (req, res, next) => {
 });
 
 campusRouter.put('/:campusId', (req, res, next) => {
-
+	const {name} = req.body
+	req.campus.update({name})
+	.then(campus => res.json(campus))
+	.catch(next);
 });
 
 campusRouter.delete('/:campusId', (req, res, next) => {
-	res.send({hello: 'this is the /campuss/:id delete route'})
+	const idToDelete = req.campus.id;
+	req.campus.destroy()
+	.then(() => {
+		res.json(idToDelete);
+	})
+	.catch(next);
 });
 
 module.exports = campusRouter;

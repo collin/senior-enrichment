@@ -1,11 +1,6 @@
 import React from 'react';
 
-function ModifyStudentForm(props) {
-  const student = props.studentToModify;
-  const campus = props.campus;
-  const campuses = props.campuses;
-
-  if (!student.name || !campus.name) return null;
+function ModifyStudentForm({studentToModify, campuses}) {
 
   return (
     <div className="container story-container">
@@ -15,7 +10,7 @@ function ModifyStudentForm(props) {
             <input
               name="student"
               className="form-like large-font"
-              defaultValue={student.name}
+              defaultValue={studentToModify.name}
             />
             <label >Campus: </label>
             <select name="campus">
