@@ -6,6 +6,9 @@ function CampusList ({campuses}) {
     return (
         <div>
             <h2>CAMPUSES</h2>
+            <Link to='/campuses/create'>
+            <button type="button" className="btn btn-outline-secondary btn-lg">ADD CAMPUS</button>
+            </Link>
             <div className='row'>
                 {
                     campuses.map(campus => (

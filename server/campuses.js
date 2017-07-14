@@ -42,6 +42,7 @@ router.post('/:id', function (req, res, next){
 
 //api/campuses/id
 router.delete('/:id', function (req, res, next) {
+    console.log(req.params.id)
     const id = req.params.id;
     Campus.destroy({ where: { id }})
     .then(() => res.status(204).end())

@@ -13,3 +13,12 @@ export function filteredArray(array, id, key) {
     }
 }
 
+export function storeId(event) {
+    if (event) {
+        return {id : event.target.value}
+    }
+}
+
+// campuses = { 1: {name: 'northwestern'}, 2: {name: 'University of Chicago'} }
+
+// campuses.1
