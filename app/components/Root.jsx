@@ -6,15 +6,10 @@ import Campuses from './Campus/Campuses';
 import AddCampus from './Campus/AddCampus';
 import AddStudent from './Student/AddStudent';
 import Students from './Student/Students';
+import SingleStudent from './Student/SingleStudent'
 
-export default class Root extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = store.getState();
-  // }
-
+export default function Root(props) {
   //  BELOW ARE ALL THE ROUTES, UPON HITTING A ROUTE THE LISTED COMPONENT WILL RENDER
-  render() {
     return (
       <Router>
         <div className="container">
@@ -23,10 +18,9 @@ export default class Root extends Component {
           <Route exact path="/Campuses" component={Campuses} />
           <Route exact path="/Campuses/AddCampus" component={AddCampus} />
           <Route exact path="/Students/AddStudent" component={AddStudent} />
-          <Route exact path="/Students" component={Students} />
-          
+          <Route exact path="/Students/:StudentName" component={SingleStudent} />
+          <Route exact path="/Students/" component={Students} />
         </div>
       </Router>
     )
   }
-}

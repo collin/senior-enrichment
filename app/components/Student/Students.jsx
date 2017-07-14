@@ -24,6 +24,32 @@ export default class Students extends Component {
     })
   }
 
+  // deleteStudent(event) {
+  //   event.preventDefault();
+  //   console.log('event.target: ', event.target)
+  //   console.log('event.target.querySelector: ', event.target.querySelector('#id'))
+    //  console.log('inputName: ', event.target.querySelector('#inputName').value)
+    //  console.log('inputEmail: ', event.target.querySelector('#inputEmail').value)
+    //  console.log('inputCampus: ', event.target.querySelector('#inputCampus').value)
+    //  const name = event.target.querySelector('#inputName').value;
+    //  const email =  event.target.querySelector('#inputEmail').value;
+    //  const assignedCampus = event.target.querySelector('#inputCampus').value;
+
+    // axios.post('/api/students/addstudent', {name, email, assignedCampus})
+    // .then(res => res.data)
+    // .then(student => {
+    //   const addStudentAction = addStudent(student)
+    //   store.dispatch(addStudentAction);
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+
+    // event.target.querySelector('#inputName').value = '';
+    // event.target.querySelector('#inputEmail').value = '';
+    // event.target.querySelector('#inputCampus').value = '';
+  // }
+
   componentWillUnmount() {
     this.unsusbscribe();
   }
@@ -42,13 +68,16 @@ export default class Students extends Component {
           {students.map(student => {
             let path = `/students/${student.name}`
             return (
-              <li key={`${student.name}`}>
+              <li key={`${student.name}`} id={`${student.name}`}>
                 <Link to={`${path}`}>
                   <span className="studentName">{student.name}</span>
                 </Link>
                   <span className="studentCampus" >{student.campusId}</span>
-                <Link to={`/students`}>  
-                  <button className="deleteStudent"><span className="glyphicon glyphicon-remove" ></span> </button>
+                <Link to={`/students`}>
+                  <button className="deleteStudent">
+                    <span className="glyphicon glyphicon-remove" />
+                    <span />
+                  </button>
                 </Link>
               </li>
             )
