@@ -16,8 +16,9 @@ function Campus (props) {
                     {
                         filteredArray(props.students, campusId, 'campusId').map(student => (
                             <div className='col-xs-4' key={student.id}>
-
+                                <Link to={`/students/${student.id}`}>
                                 <h3>{student.name}</h3>
+                                </Link>
                             </div>
                         ))
                     }
