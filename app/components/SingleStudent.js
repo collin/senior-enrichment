@@ -1,10 +1,14 @@
 import React from 'react';
 import ModifyStudentForm from './ModifyStudentForm';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 function SingleStudent(props) {
-  const student = { name: 'willy', campusId: 1, id: 1 };
-  const campus = { name: 'Howard', id: 1 };
+  const matchId = props.match.params.studentId
+
+  const student = props.students.find(student => +student.id === +matchId) || {}
+  const campus = props.campuses.find(campus => campus.id === student.campusId) || {}
   return (
     <div>
       <h3>View the student's information</h3>
@@ -21,4 +25,13 @@ function SingleStudent(props) {
   )
 }
 
-export default SingleStudent;
+const mapState = state => {
+  return {
+    students: state.students,
+    campuses: state.campuses,
+  }
+};
+
+const mapDispatch = null;
+
+export default connect(mapState, mapDispatch)(SingleStudent);

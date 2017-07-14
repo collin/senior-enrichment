@@ -1,21 +1,19 @@
 import React from 'react';
 import StudentListEntry from './StudentListEntry';
+import { connect } from 'react-redux';
 
-
-function StudentList(willBeProps) {
+class StudentList extends React.Component {
   // filter according to url
   // have access to students and campuses
-  const props = {
-    students: [{name: 'willy', campusId: 1, id: 1}, {name: 'brian', campusId: 2, id: 2}],
-    campuses: [{name: 'Howard', id: 1}, {name: 'Stanford', id: 2}]
-  }
 
-  return (
+  render () {
+
+    return (
     <div>
       <ul>
         {
-          props.students.map(student => {
-            const campus = props.campuses[student.campusId - 1];
+          this.props.students.map(student => {
+            const campus = this.props.campuses[student.campusId - 1];
 
             return (
               <li className="list-group-item story-item" key={student.id}>
@@ -26,7 +24,17 @@ function StudentList(willBeProps) {
         }
       </ul>
     </div>
-  )
+    )
+  }
 }
 
-export default StudentList;
+const mapState = state => {
+  return {
+    students: state.students,
+    campuses: state.campuses,
+  }
+};
+
+const mapDispatch = null;
+
+export default connect(mapState, mapDispatch)(StudentList);

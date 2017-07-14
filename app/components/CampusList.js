@@ -1,8 +1,10 @@
 import React from 'react';
 import CampusCard from './CampusCard';
+import { connect } from 'react-redux';
 
-function CampusList(willBeProps) {
-  const campuses = [{name: 'Howard', id: 1}, {name: 'Stanford', id: 2}];
+
+function CampusList(props) {
+  const campuses = props.campuses;
 
   return (
     <div className="col-xs-10">
@@ -20,4 +22,12 @@ function CampusList(willBeProps) {
   )
 }
 
-export default CampusList;
+const mapState = state => {
+  return {
+    campuses: state.campuses
+  }
+};
+
+const mapDispatch = null;
+
+export default connect(mapState, mapDispatch)(CampusList);

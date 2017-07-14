@@ -1,10 +1,14 @@
 import React from 'react';
 import StudentList from './StudentList';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 function SingleCampus(props) {
+  const matchCampusId =
+
+  const campus = props.campuses.find()
   const students = [{name: 'willy', campusId: 1, id: 1}, {name: 'brian', campusId: 2, id: 2}];
-  const campus = {name: 'Howard', id: 1};
 
   return (
     <div className="container story-container">
@@ -17,4 +21,13 @@ function SingleCampus(props) {
   )
 }
 
-export default SingleCampus;
+const mapState = state => {
+  return {
+    students: state.students,
+    campuses: state.campuses,
+  }
+};
+
+const mapDispatch = null;
+
+export default connect(mapState, mapDispatch)(SingleCampus);
