@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
-import Students from './Students';
 import Home from './Home';
 import {Route, Switch} from 'react-router-dom';
 import {Router} from 'react-router'
-import { getStudentsThunk } from '../reducers/index.jsx'
 import history from './history'
+import { getStudentsThunkCreator, getCampusesThunkCreator } from '../reducers/index.jsx'
+import store from '../store.jsx'
+import StudentListContainer from './Students'
+import CampusListContainer from './Campuses'
+import IndividualCampusContainer from './IndividualCampus'
 // import { render } from 'react-dom'
 
 
@@ -16,17 +19,22 @@ class Root extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
-    this.props.fetchInitialData()
+    const getStudentsThunk = getStudentsThunkCreator();
+    store.dispatch(getStudentsThunk)
+    const getCampusesThunk = getCampusesThunkCreator();
+    store.dispatch(getCampusesThunk)
+
   }
 
   render () {
     return (
       <Router history={history}>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/students" component={Students} />
-        </div>
+        <Switch>
+          <Route path="/students" component={StudentListContainer} />
+          <Route path="/campuses/:campusId" component={IndividualCampusContainer} />
+          <Route path="/campuses" component={CampusListContainer} />
+          <Route path="/" component={Home} />
+        </Switch>
       </Router>
     );
   }
@@ -35,11 +43,12 @@ class Root extends Component {
 //CONTAINER
 const mapPropsToState = null;
 
-const mapDispatch = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   fetchInitialData:() => {
-    dispatch(getStudentsThunk())
+    students: dispatch(getStudentsThunk())
+    campuses: dispatch(getCampusesThunk())
   }
 });
 
-export default connect(mapPropsToState, mapDispatch)(Root)
+export default connect(mapPropsToState, mapDispatchToProps)(Root)
     

@@ -4,9 +4,11 @@ import Navbar from './Navbar'
 export default class Home extends Component {
   render () {
     return (
-      <div>
+      <div className="homeDiv">
+        <h1>Adventure Academy</h1>
         <Navbar />
-        Hello
+        <div className="homeContent">
+        </div>
       </div>
     );
   }

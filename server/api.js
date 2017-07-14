@@ -2,6 +2,7 @@
 const api = require('express').Router()
 const db = require('../db')
 const Students = require('../db/models/students')
+const Campuses = require('../db/models/campuses')
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
 	// I know this because we automatically send index.html for all requests that don't make sense in our backend.
@@ -16,5 +17,24 @@ api.get('/students', function(req, res, next) {
   })
   .catch(next)
 })
+
+api.get('/campuses', function(req, res, next) {
+  Campuses.findAll()
+  .then(function(campuses){
+    res.json(campuses)
+  })
+  .catch(next)
+})
+
+api.get('/campuses/:campusId', function(req, res, next) {
+  let campusId = +req.params.campusId
+  Students.findAll({where: {campusId: req.params.campusId}})
+  .then(function(students){
+    res.json(students)
+  })
+  .catch(next)
+})
+
+
 
 module.exports = api

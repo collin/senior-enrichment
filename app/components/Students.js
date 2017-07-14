@@ -1,23 +1,41 @@
 import React from 'react';
-import getStudentsThunk from '../reducers/index.jsx'
+import { connect } from 'react-redux';
+import store from '../store.jsx'
+import Navbar from './Navbar'
 
-export class Students extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
-  render(){
-    console.log('in student render')
-    return (
-      <div>
-        <ul>
-          { this.props.students.map(student => <li key={student.id}>{student.name}</li>) }
-        </ul>
-      </div>
-    )
+
+const mapStateToProps = function(state) {
+  return {
+    students: state.students
   }
 }
 
-const mapPropsToState = ({ students }) => ({ students });
+const mapDispatchToProps = null;
 
-export default Students;
+function listStudents(props){
+  return (
+    <div>
+      <Navbar />
+      <ul>
+        { props.students.map(student => <li key={student.id}>{student.name}</li>) }
+      </ul>
+      <h2>Add Student:</h2>
+      <form>
+        <input type="text" placeholder="First Name" />
+        <input type="text" placeholder="Last Name" />
+        <input type="text" placeholder="E-Mail" />
+          <select name="cars">
+            <option value="#">Campus 1</option>
+            <option value="#">Campus 2</option>
+            <option value="#">Campus 3</option>
+            <option value="#">Campus 4</option>
+          </select>
+      </form>
+    </div>
+  )
+}
+
+const StudentListContainer = connect(mapStateToProps, mapDispatchToProps)(listStudents)
+
+export default StudentListContainer
