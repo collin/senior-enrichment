@@ -1,6 +1,7 @@
 import React from 'react';
 import StudentListEntry from './StudentListEntry';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 class StudentList extends React.Component {
   // filter according to url
@@ -37,4 +38,4 @@ const mapState = state => {
 
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(StudentList);
+export default withRouter(connect(mapState, mapDispatch)(StudentList));

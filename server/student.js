@@ -22,16 +22,49 @@ studentRouter.get('/:studentId', (req, res, next) => {
 	res.json(req.student);
 });
 
-studentRouter.post('/:studentId', (req, res, next) => {
-	// student = req.student;
+studentRouter.post('/', (req, res, next) => {
+	Student.create({
+		name: req.body.name,
+		campusId: req.body.campusId
+	})
+	.then(studentWithCampus => {
+		res.json(studentWithCampus);
+	})
+
+	// Campus.findById(req.body.campusId)
+	// .then(campus => {
+	// 	return Student.create({
+	// 		name: req.body.name
+	// 	})
+	// 	.then(student => {
+	// 		// is addStudent async?
+	// 		return campus.addStudent(student)
+	// 		.then(() => {
+	// 			return student;
+	// 		})
+	// 	})
+	// })
+	// .then(studentWithCampus => {
+	// 	console.log(studentWithCampus)
+	// 	res.json(studentWithCampus);
+	// })
 });
 
 studentRouter.put('/:studentId', (req, res, next) => {
-	res.send({hello: 'this is the /students/:id put route'})
+	const {name, campusId} = req.body
+	req.student.update({name, campusId: +campusId})
+	.then(studentWithCampus => {
+		res.json(studentWithCampus);
+	})
 });
 
 studentRouter.delete('/:studentId', (req, res, next) => {
-	res.send({hello: 'this is the /students/:id delete route'})
+	const idToDelete = req.student.id;
+	req.student.destroy()
+	.then(deletedStudent => {
+		res.json(idToDelete);
+	})
+	.catch(next);
 });
 
 

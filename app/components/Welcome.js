@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -21,4 +22,4 @@ const mapState = null;
 
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(Welcome);
+export default withRouter(connect(mapState, mapDispatch)(Welcome));

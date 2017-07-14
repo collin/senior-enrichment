@@ -22,12 +22,14 @@ campusRouter.get('/:campusId', (req, res, next) => {
   res.json(req.campus);
 })
 
-campusRouter.post('/:campusId', (req, res, next) => {
-	// campus = req.campus;
+campusRouter.post('/', (req, res, next) => {
+	Campus.create(req.body)
+	.then(campus => res.json(campus))
+	.catch(next);
 });
 
 campusRouter.put('/:campusId', (req, res, next) => {
-	res.send({hello: 'this is the /campuss/:id put route'})
+
 });
 
 campusRouter.delete('/:campusId', (req, res, next) => {

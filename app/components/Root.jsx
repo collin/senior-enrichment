@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import StudentList from './StudentList';
 import CampusList from './CampusList';
@@ -21,6 +21,7 @@ class Root extends Component {
 
   render () {
     return (
+    <Router>
     <div>
       <Route component={Navbar} />
       <main>
@@ -33,6 +34,7 @@ class Root extends Component {
         <Route exact path="/campuses/:campusId/edit" component={ModifyCampusForm} />
       </main>
     </div>
+    </Router>
     )
   }
 }
