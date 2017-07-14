@@ -5,7 +5,7 @@ export default function SingleStudent(props) {
     return (
       <div>
         Hello!
-        <button></button>
+        {/*<button></button>*/}
       </div>
     )
   }
