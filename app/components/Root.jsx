@@ -10,6 +10,7 @@ import store from '../store.jsx'
 import StudentListContainer from './Students'
 import CampusListContainer from './Campuses'
 import IndividualCampusContainer from './IndividualCampus'
+import IndividualStudent from './IndividualStudent'
 // import { render } from 'react-dom'
 
 
@@ -30,10 +31,11 @@ class Root extends Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route path="/students" component={StudentListContainer} />
+          <Route exact path="/students" component={StudentListContainer} />
+          <Route path="/students/:studentId" component={IndividualStudent} />
           <Route path="/campuses/:campusId" component={IndividualCampusContainer} />
           <Route path="/campuses" component={CampusListContainer} />
-          <Route path="/" component={Home} />
+          <Route component={Home} />
         </Switch>
       </Router>
     );

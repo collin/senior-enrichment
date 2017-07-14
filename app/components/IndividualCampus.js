@@ -16,7 +16,6 @@ class listCampusStudents extends Component{
   }
 
   render(){
-    console.log('props: ', this.props)
     return (
       <div>
         <Navbar />

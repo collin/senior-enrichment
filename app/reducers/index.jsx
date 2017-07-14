@@ -6,7 +6,8 @@ function getInitialState() {
   return {
     students: [],
     campuses: [],
-    selectedCampusStudents: []
+    selectedCampusStudents: [],
+    selectedStudent: {}
   }
 }
 
@@ -15,6 +16,7 @@ function getInitialState() {
 const GET_STUDENTS = 'GET_STUDENTS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const GET_CAMPUS = 'GET_CAMPUS';
+const GET_STUDENT = 'GET_STUDENT'
 
 
 //ACTION CREATORS----------------------------------------------------------
@@ -34,6 +36,11 @@ export function getIndividualCampusStudents (selectedCampusStudents) {
   return action;
 }
 
+export function getStudent (selectedStudent) {
+  const action = { type: GET_STUDENT, selectedStudent };
+  return action;
+}
+
 
 
 
@@ -50,6 +57,9 @@ export const rootReducer = function(state = getInitialState(), action) {
 
     case GET_CAMPUS:
       return Object.assign({}, state, {selectedCampusStudents: action.selectedCampusStudents})
+
+    case GET_STUDENT:
+      return Object.assign({}, state, {selectedStudent: action.selectedStudent})
 
 
     default: return state
@@ -97,6 +107,20 @@ export function getIndividualCampusThunkCreator(studentsAtCampus) {
         dispatch(action)
       })
       .catch(err => console.error('Fetching students at campus unsuccessful', err))
+  }
+}
+
+export function getStudentThunkCreator(studentId) {
+  return function getStudentThunk(dispatch) {
+    return axios.get(`/api/students/${studentId}`)
+      .then(function(res){
+        return res.data
+      })
+      .then(function(selectedStudent) {
+        const action = getStudent(selectedStudent)
+        dispatch(action)
+      })
+      .catch(err => console.error('Fetching students unsuccessful', err))
   }
 }
 

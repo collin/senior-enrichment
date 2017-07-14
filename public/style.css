@@ -58,3 +58,17 @@ body {
 .campusesList {
   color: black;
 }
+
+.studentProfile {
+  color: black;
+}
+
+.profilePicture {
+  width: 350px;
+  display: block;
+  margin: auto;
+}
+
+.emailAddress {
+  text-align: center;
+}

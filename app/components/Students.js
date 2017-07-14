@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store.jsx'
 import Navbar from './Navbar'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -14,11 +15,21 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = null;
 
 function listStudents(props){
+
+  console.log(props)
   return (
     <div>
       <Navbar />
       <ul>
-        { props.students.map(student => <li key={student.id}>{student.name}</li>) }
+        {
+          props.students.map(function(student){
+            return (
+                <li key={student.id}>
+                  <NavLink to={`/students/${student.id}`}>{student.name}</NavLink>
+                </li>
+              )
+          })
+        }
       </ul>
       <h2>Add Student:</h2>
       <form>
