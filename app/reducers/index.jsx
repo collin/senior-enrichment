@@ -1,73 +1,84 @@
 import { combineReducers } from 'redux'
 
-const initialState = {}
+//ACTION TYPES
+const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS';
+const ADD_STUDENT = 'ADD_STUDENT';
+const DELETE_STUDENT = 'DELETE_STUDENT';
+
+const GET_ALL_CAMPUSES = 'GET_ALL_CAMPUSES';
+const ADD_CAMPUS = 'ADD_CAMPUS';
+
+//ACTION CREATORS
+export const getStudents = function (students) {
+	return {
+	type: GET_ALL_STUDENTS,
+	students: students
+	};
+};
+
+export const addStudent = function (student) {
+	return {
+	type: ADD_STUDENT,
+	student: student
+	};
+};
+
+export const deleteStudent = function (student) {
+	return {
+	type: DELETE_STUDENT,
+	student: student
+	};
+};
+
+export const getCampuses = function (campuses) {
+	return {
+	type: GET_ALL_CAMPUSES,
+	campuses: campuses
+	};
+};
+
+export const addCampus = function (campus) {
+	return {
+	type: ADD_CAMPUS,
+	campus: campus
+	};
+};
 
 
+//INITIAL STATE
+const initialState = {
+  students: [],
+  campuses: [],
+  campus: {},
+  student: {},
+};
 
-const rootReducer = function(state = initialState, action) {
+
+//REDUCER
+const rootReducer = function(prevState = initialState, action) {
+  const nextState = Object.assign({}, prevState);
+
   switch(action.type) {
-    default: return state
+    case GET_ALL_STUDENTS:
+      nextState.students = action.students
+      break
+    case GET_ALL_CAMPUSES:
+      nextState.campuses = action.campuses
+      break
+    case ADD_CAMPUS:
+      nextState.campus = action.campus
+      nextState.campuses.push(action.campus)
+      break
+    case ADD_STUDENT:
+      nextState.student = action.student
+      nextState.students.push(action.student)
+      break
+    case DELETE_STUDENT:
+      nextState.student = action.student
+      break
+    default: return prevState
   }
+  return nextState;
 };
 
 export default rootReducer
-
-//SEE IF WE CAN USE THE CODE BELOW
-
-// //ACTION TYPES
-// const GOT_MESSAGES_FROM_SERVER = 'GOT_MESSAGES_FROM_SERVER';
-// const GOT_NEW_MESSAGE_FROM_SERVER = 'GOT_NEW_MESSAGE_FROM_SERVER';
-// const WRITE_MESSAGE = 'WRITE_MESSAGE';
-// const POSTED_MESSAGE_TO_SERVER = 'POSTED_MESSAGE_TO_SERVER';
-
-
-// //ACTION CREATORS
-// export const gotMessagesFromServer = function (messages) {
-// 	return {
-// 	type: GOT_MESSAGES_FROM_SERVER,
-// 	messages: messages
-// 	};
-// };
-
-// export const gotNewMessageFromServer = function (message) {
-// 	return {
-// 	type: GOT_NEW_MESSAGE_FROM_SERVER,
-// 	message: message
-// 	};
-// };
-
-// export const writeMessage = function (inputContent) {
-// 	return {
-// 	type: WRITE_MESSAGE,
-// 	newMessageEntry: inputContent
-// 	};
-// };
-
-
-// //INITIAL STATE
-// const initialState = {
-// 	messages: [],
-// 	newMessageEntry: ''
-// };
-
-// //REDUCER
-// function reducer (prevState = initialState, action) {
-// 	const newState = Object.assign({}, prevState);
-
-//   switch (action.type) {
-// 		case GOT_MESSAGES_FROM_SERVER:
-// 		newState.messages = action.messages;
-// 		return newState;
-
-// 		case GOT_NEW_MESSAGE_FROM_SERVER:
-// 		newState.messages = [...prevState.messages, action.message];
-// 		return newState;
-
-// 		case WRITE_MESSAGE:
-// 		newState.newMessageEntry = action.newMessageEntry;
-// 		return newState;
-
-// 		default:
-// 		return newState;
-//   }
-// }

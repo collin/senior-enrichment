@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 })
 
 //CREATE A CAMPUS
-.post('/', function(req, res, next) {
+.post('/addcampus', function(req, res, next) {
   Campus.create({name: req.body.name, image: req.body.image})
   .then(newCampus => {
     res.json(newCampus)

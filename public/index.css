@@ -1,21 +1,19 @@
 /*ELEMENTS*/
 
-a {
+/*a {
   text-align: center;
-}
+}*/
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,Unbuntu, Cantarell,Helvetica,Neue, sans-serif;
     /*the above dynamically styles font based on the machine*/
 }
 
-ul {
+.nav {
   padding: 0;
-}
-
-li {
   list-style-type: none;
 }
+
 
 /*CLASSES*/
 .container {
@@ -46,10 +44,15 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  list-style-type: none;
 }
 
 .nav-bar {
   
+}
+
+.navBarList {
+  list-style-type: none;
 }
 
 .nav-pills {
@@ -61,4 +64,20 @@ li {
   margin: 10px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.studentCampus {
+  margin: 20px;
+}
+
+span .studentName {
+  margin: 20px;
+}
+
+.addCampus {
+  margin: 10px 10px 30px 10px;
+}
+
+.addStudent {
+  margin: 10px 10px 10px 10px;
 }

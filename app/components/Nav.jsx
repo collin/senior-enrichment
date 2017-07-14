@@ -8,7 +8,9 @@ export default class Nav extends Component {
     return (
       // <div>
       <nav className="navbar navbar-default">
-        <a className="navbar-brand" href="/">Margaret Hamilton Academy</a>
+        <NavLink to="/">
+          <span className="navbar-brand" >Margaret Hamilton Academy</span>
+        </NavLink>
         <div>
           <ul className="nav nav-pills">
             {views.map(view => {
@@ -20,7 +22,7 @@ export default class Nav extends Component {
               }
               return (
                 <NavLink className="nav nav-pills" to={`${path}`}>
-                  <li key={`${view}`}><a href="#">{view}</a></li>
+                  <li key={`${view}`} className="navBarList" ><span>{view}</span></li>
                 </NavLink>
               )
             })}

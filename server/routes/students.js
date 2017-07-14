@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 //1. Find the campus - use req.body
 //2. Create the student
 //3. Set campus for student
-.post('/', function(req, res, next) {
+.post('/addstudent', function(req, res, next) {
   // console.log(req.body)
   let campusName = req.body.assignedCampus;
   let studentEmail = req.body.email;
