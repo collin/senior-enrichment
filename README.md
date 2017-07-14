@@ -36,11 +36,11 @@ Use at least sequelize, express, react, and redux when creating this app. You ca
 #### See Wireframes folder for visual
 
 - Navigation: as a user I...
-  * will land on **Home** by default
-  * can navigate to **Campuses** from **Home**
-  * can navigate to **Students** from **Home**
-  * can navigate to view a **Single Campus** from **Campuses**
-  * can navigate to view a **Single Student** from **Students**
+  * will land on **Home** by default /
+  * can navigate to **Campuses** from **Home** /
+  * can navigate to **Students** from **Home** /
+  * can navigate to view a **Single Campus** from **Campuses** /
+  * can navigate to view a **Single Student** from **Students** /
   * can navigate to view a **Single Student** from **Single Campus** (for any student at that campus)
   * can navigate to view that student's **Single Campus** from **Single Student**
 
@@ -88,7 +88,7 @@ DELETE
 
 ### How to test functionality without a frontend
 - GET: use your browser
-- POST / PUT / DELETE : 
+- POST / PUT / DELETE :
  - CLI (command line interface) with `curl`
    - e.g. `curl -H "Content-Type: application/json" -X POST -d '{"username":"kate","password":"1234"}' http://localhost:3000/api/login`
    - `-H`: headers. `-X`: verb. `-d`: data (must be of the type specified in headers). http://[address]:[port]/[route_path]

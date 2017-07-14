@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 export const Home = () => (
     <div className='home'>
@@ -8,11 +9,15 @@ export const Home = () => (
         </div>
         <div className='container text-center large-font'>
             <div className='row'>
-                <div className='col'>
+                <div className='col-l-6'>
+                    <Link to={`/campuses`}>
                     <h2>Campuses</h2>
+                    </Link>
                 </div>
-                <div className='col'>
+                <div className='col-l-6'>
+                    <Link to={`/students`}>
                     <h2>Students</h2>
+                    </Link>
                 </div>
             </div>
         </div>

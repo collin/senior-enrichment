@@ -2,16 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-function StudentList ({students}) {
+function CampusList ({campuses}) {
     return (
         <div>
-            <h2>STUDENTS</h2>
+            <h2>CAMPUSES</h2>
             <div className='row'>
                 {
-                    students.map(student => (
-                        <div className='col-xs-4' key={student.id}>
-                            <Link to={`/students/${student.id}`}>
-                            <h3>{student.name}</h3>
+                    campuses.map(campus => (
+                        <div className='col-xs-4' key={campus.id}>
+                            <Link to={`/campuses/${campus.id}`}>
+                            <h3>{campus.name}</h3>
                             </Link>
                         </div>
                     ))
@@ -23,10 +23,10 @@ function StudentList ({students}) {
 
 const mapStatetoProps = state => {
     return {
-        students: state.students
+        campuses: state.campuses
     }
 }
 
 const mapDispatchToProps = null
 
-export default connect(mapStatetoProps, mapDispatchToProps)(StudentList)
+export default connect(mapStatetoProps, mapDispatchToProps)(CampusList)

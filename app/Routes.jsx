@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {Home} from './components/Home';
-// import CampusList from './components/CampusList'
-// import Campus from './components/Campus'
-// import Student from './components/Student'
+import CampusList from './components/campuses/CampusList'
+import StudentList from './components/students/StudentList'
+import Campus from './components/campuses/Campus'
+import Student from './components/students/Student'
 import {fetchCampuses} from './redux/campuses';
 import {fetchStudents} from './redux/students'
 
@@ -21,11 +22,11 @@ class Routes extends Component {
             <Router>
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    {/*<Route path='/campuses' component={CampusList} />*/}
-                    {/*<Route path='/students' component={StudentList} />
-                    <Route path='/campus/:id' component={Campus} />
-                    <Route path='/students/:id' component={Student} />*/}
-                <Route component={Home} />
+                    <Route exact path='/campuses' component={CampusList} />
+                    <Route exact path='/students' component={StudentList} />
+                    <Route exact path='/campuses/:id' component={Campus} />
+                    <Route exact path='/students/:id' component={Student} />
+                    <Route component={Home} />
                 </Switch>
             </Router>
         )
