@@ -5,12 +5,8 @@ const Campus = models.Campus;
 
 module.exports = router;
 
-
-//route  = api/Campuses will get all campuses from the DB
+// route = api/Campuses --> will get all campuses from the DB
 router.get('/', function(req, res, next) {
-  console.log(req)
-  // res.send('You hit the campuses route!')
-  
   Campus.findAll()
   .then(campuses => res.json(campuses))
   .catch(next);
@@ -18,7 +14,6 @@ router.get('/', function(req, res, next) {
 
 //GET A SINGLE CAMPUS BY ID
 .get('/:campusId', function(req, res, next) {
-  // console.log(req.params.campusId)
   let campusId = req.params.campusId
   Campus.findById(campusId)
   .then(campus => {
@@ -42,7 +37,16 @@ router.get('/', function(req, res, next) {
 })
 
 //DELETE A CAMPUS
-.delete('/', function(req, res, next) {
-  
-  res.send('Deleted a campus!')
+.delete('/:campusId', function(req, res, next) {
+  let campusId = req.params.campusId
+  Campus.findById(campusId)
+  .then(campus => {
+    let destroyedCampus = campus.name;
+    campus.destroy();
+    return destroyedCampus;
+  })
+  .then(destroyedCampus => {
+    res.send(`You deleted the ${destroyedCampus} Campus`)
+  })
+  .catch(next)
 })

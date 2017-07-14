@@ -5,14 +5,16 @@ const Campus =  require('./campus');
 
 const Student = db.define('student', {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false,
   },
   email: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 })
 
 Campus.hasMany(Student)
-Student.belongsTo(Campus)
+Student.belongsTo(Campus) //----> Adds 'campusId' to Student
 
 module.exports = Student;
