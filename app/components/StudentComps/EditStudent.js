@@ -1,29 +1,29 @@
 import React from 'react';
 import ModifyStudentForm from './ModifyStudentForm';
 import { connect } from 'react-redux';
-import { putStudent, deleteStudent } from '../reducers/studentReducer';
+import { putStudent, deleteStudent } from '../../reducers/studentReducer';
 
 
-function EditStudent(props) {
-  const matchId = props.match.params.studentId;
-  const studentToModify = props.students.find(student => student.id === +matchId) || {};
-  const campuses = props.campuses
+function EditStudent({ studentToModify, campuses, removeStudent, sendUpdate}) {
 
   return (
-    <form onSubmit={props.sendUpdate}>
+    <form onSubmit={sendUpdate}>
       <div className="container">
         <h3>Edit the student's information</h3>
         <ModifyStudentForm studentToModify={studentToModify} campuses={campuses} />
         <button className="btn btn-primary" type="submit">Submit Updates</button>
-        <button className="btn btn-primary" onClick={props.removeStudent}>Delete Student</button>
+        <button className="btn btn-primary" onClick={removeStudent}>Delete Student</button>
       </div>
     </form>
   )
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  const studentId = ownProps.match.params.studentId;
+  const studentToModify = state.students.find(student => student.id === +studentId) || {};
+
   return {
-    students: state.students,
+    studentToModify,
     campuses: state.campuses,
   }
 };

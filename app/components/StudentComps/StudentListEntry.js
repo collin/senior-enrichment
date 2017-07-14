@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteStudent } from '../reducers/studentReducer';
+import { deleteStudent } from '../../reducers/studentReducer';
 
-function StudentEntryList(props) {
-  const student = props.student;
-  const campus = props.campus;
+function StudentListEntry({ student, campus, removeStudent}) {
 
   return (
         <div >
@@ -21,7 +19,7 @@ function StudentEntryList(props) {
             <li>
               <button
                 className="btn btn-default btn-xs"
-                onClick={(e) => props.removeStudent(e, student.id)}
+                onClick={(e) => removeStudent(e, student.id)}
                 >
                 <span className="glyphicon glyphicon-remove" />
               </button>
@@ -47,4 +45,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(StudentEntryList);
+export default connect(mapState, mapDispatch)(StudentListEntry);

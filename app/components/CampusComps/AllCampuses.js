@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import AddCampusForm from './AddCampusForm';
 
 
-function CampusList(props) {
-  const campuses = props.campuses;
+function AllCampuses({campuses}) {
 
   return (
     <div className="col-xs-10">
@@ -34,4 +33,4 @@ const mapState = state => {
 
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(CampusList);
+export default connect(mapState, mapDispatch)(AllCampuses);

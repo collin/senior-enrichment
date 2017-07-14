@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import AllStudents from './AllStudents';
-import AllCampuses from './AllCampuses';
+import AllStudents from './StudentComps/AllStudents';
+import AllCampuses from './CampusComps/AllCampuses';
 import Welcome from './Welcome';
-import EditStudent from './EditStudent';
-import EditCampus from './EditCampus';
-import SingleStudent from './SingleStudent';
-import SingleCampus from './SingleCampus';
+import EditStudent from './StudentComps/EditStudent';
+import EditCampus from './CampusComps/EditCampus';
+import SingleStudent from './StudentComps/SingleStudent';
+import SingleCampus from './CampusComps/SingleCampus';
 import { fetchCampuses } from '../reducers/campusReducer';
 import { fetchStudents } from '../reducers/studentReducer';
 

@@ -1,14 +1,11 @@
 import React from 'react';
-import StudentListEntry from './StudentListEntry';
+import ListStudents from '../StudentComps/ListStudents';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postStudent } from '../reducers/studentReducer';
+import { postStudent } from '../../reducers/studentReducer';
 
 
-function SingleCampus(props) {
-  const matchCampusId = props.match.params.campusId
-  const campus = props.campuses.find(campus => +campus.id === +matchCampusId) || {};
-  const students = props.students.filter(student => student.campusId === campus.id);
+function SingleCampus({filteredStudents, campuses, campus, addNewStudent}) {
 
   return (
     <div className="container">
@@ -16,21 +13,11 @@ function SingleCampus(props) {
         <ul className="list-inline large-font">
           <div>
             <h5>Current Students:</h5>
-            <ul>
-              {
-                students.map(student => {
-                  return (
-                    <li className="list-group-item" key={student.id}>
-                      <StudentListEntry student={student} campus={campus} />
-                    </li>
-                  )
-                })
-              }
-            </ul>
+            <ListStudents students={filteredStudents} campuses={campuses}/>
           </div>
         </ul>
           <h5><Link className="btn btn-primary" to={`/campuses/${campus.id}/edit`} >Edit Campus</Link></h5>
-        <form onSubmit={(e) => props.addNewStudent(e, campus)}>
+        <form onSubmit={(e) => addNewStudent(e, campus)}>
           <div className="container">
             <h3>Add a student:</h3>
             <ul className="list-inline large-font">
@@ -49,14 +36,19 @@ function SingleCampus(props) {
   )
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  const campusId = ownProps.match.params.campusId;
+
+  const filteredStudents = state.students.filter(student => student.campusId === +campusId) || {};
+  const campus = state.campuses.find(campus => campus.id === +campusId) || {};
   return {
-    students: state.students,
+    filteredStudents,
     campuses: state.campuses,
+    campus
   }
 };
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
   return {
     addNewStudent: (e, campus) => {
       e.preventDefault();

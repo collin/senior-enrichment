@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postCampus } from '../reducers/campusReducer';
+import { postCampus } from '../../reducers/campusReducer';
 
-function AddCampusForm (props) {
+function AddCampusForm ({ addCampus }) {
+
   return (
-    <form onSubmit={props.addCampus}>
+    <form onSubmit={addCampus}>
       <div className="container story-container">
         <h3>Add a campus:</h3>
         <ul className="list-inline large-font">

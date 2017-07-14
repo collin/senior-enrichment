@@ -1,17 +1,14 @@
 import React from 'react';
-import StudentListEntry from './StudentListEntry';
+import ListStudents from '../StudentComps/ListStudents';
 import { connect } from 'react-redux';
-import { putCampus, deleteCampus } from '../reducers/campusReducer';
+import { putCampus, deleteCampus } from '../../reducers/campusReducer';
 
-function EditCampus(props) {
-  const matchId = props.match.params.campusId;
-  const campus = props.campuses.find(campus => campus.id === +matchId) || {};
-  const students = props.students.filter(student => student.campusId === campus.id)
+function EditCampus({ campus, campuses, filteredStudents, removeCampus, updateCampus}) {
 
   return (
     <div className="container story-container">
       <h2>Edit Campus Info:</h2>
-      <form onSubmit={props.updateCampus}>
+      <form onSubmit={updateCampus}>
         <ul className="list-inline large-font">
           <li>
               <label >Campus Name: </label>
@@ -22,19 +19,9 @@ function EditCampus(props) {
               />
           </li>
           <div>
-            <ul>
-              {
-                students.map(student => {
-                  return (
-                    <li className="list-group-item story-item" key={student.id}>
-                      <StudentListEntry student={student} campus={campus} />
-                    </li>
-                  )
-                })
-              }
-            </ul>
+            <ListStudents students={filteredStudents} campuses={campuses} />
             <button className="btn btn-primary" type="submit">Submit Updates</button>
-            <button className="btn btn-primary" onClick={props.removeCampus}>Delete Campus</button>
+            <button className="btn btn-primary" onClick={removeCampus}>Delete Campus</button>
           </div>
         </ul>
       </form>
@@ -42,10 +29,15 @@ function EditCampus(props) {
   )
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  const campusId = ownProps.match.params.campusId;
+
+  const filteredStudents = state.students.filter(student => student.campusId === +campusId) || {};
+  const campus = state.campuses.find(campus => campus.id === +campusId) || {};
   return {
-    students: state.students,
+    filteredStudents,
     campuses: state.campuses,
+    campus
   }
 }
 

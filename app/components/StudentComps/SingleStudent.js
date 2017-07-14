@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-function SingleStudent(props) {
-  const matchId = props.match.params.studentId
-  const student = props.students.find(student => +student.id === +matchId) || {}
-  const campus = props.campuses.find(campus => campus.id === student.campusId) || {}
+function SingleStudent({ student, campus }) {
 
   return (
     <div className="container">
@@ -24,10 +21,14 @@ function SingleStudent(props) {
   )
 }
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
+  const matchId = ownProps.match.params.studentId
+  const student = state.students.find(student => +student.id === +matchId) || {}
+  const campus = state.campuses.find(campus => campus.id === student.campusId) || {}
+
   return {
-    students: state.students,
-    campuses: state.campuses,
+    student,
+    campus
   }
 };
 
