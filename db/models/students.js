@@ -15,7 +15,7 @@ Students.findOrCreate( {where: {name: 'Amy King', email: 'amy@gmail.com', image:
 Students.findOrCreate( {where: {name: 'Eric King', email: 'EJKinger@gmail.com', image: 'http://i.imgur.com/zpP309d.jpg'}})
 Students.findOrCreate( {where: {name: 'Emerol King', email: 'SirEmerol@gmail.com', image: 'http://i.imgur.com/CZPKX7D.png'}})
 Students.findOrCreate( {where: {name: 'Jarett Bruner', email: 'JB@gmail.com', image: 'http://i.imgur.com/zTyY8Rn.jpg'}})
-Students.findOrCreate( {where: {name: 'Cameron Saum', email: 'Camera@gmail.com', image: 'http://i.imgur.com/Af9nLUG.jpg'}})
+Students.findOrCreate( {where: {name: 'Cameron Saum', email: 'Camera@gmail.com', image: 'http://i.imgur.com/b4gL9XC.jpg'}})
 Students.findOrCreate( {where: {name: 'Megan Kasarda', email: 'BIIGMegs@gmail.com', image: "http://i.imgur.com/ceusL0I.jpg"}})
 Students.findOrCreate( {where: {name: 'PJ Strobel', email: 'Peej@gmail.com', image: 'http://i.imgur.com/npQdPlV.png'}})
 Students.findOrCreate( {where: {name: 'Emily Krutz', email: 'Emily@Emily.com', image: 'http://i.imgur.com/9cKGcu4.png'}})
