@@ -1,0 +1,113 @@
+div {
+  font-family: 'Droid Serif', serif;
+}
+
+button {
+  font-family: georgia;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+
+}
+
+h1 {
+  color: white;
+  font-size: 40px;
+  text-align: center;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+#main {
+  height: 100%;
+}
+
+.navList {
+  background-color: white;
+  align-content: center;
+  background-color:rgba(0, 0, 0, 0);
+}
+
+.Navigation {
+  display: inline;
+  padding: 5px;
+}
+
+.campusPic {
+  width: 500px;
+  display: block;
+  margin: auto;
+}
+
+.homeDiv {
+  background-image: url("http://i.imgur.com/3QjiuIT.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 10px;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.homeContent {
+  position: center;
+  z-index: 99;
+}
+
+.campusesList {
+  color: black;
+}
+
+.studentProfile {
+  color: black;
+}
+
+.profilePicture {
+  width: 350px;
+  display: block;
+  margin: auto;
+}
+
+.emailAddress {
+  text-align: center;
+}
+
+.homeParagraph {
+  color: black;
+  text-align: center;
+  margin: 5px;
+}
+
+.adventure {
+  color: black;
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  display: inline;
+  margin: 0 auto;
+}
+
+.academy {
+  font-family: 'Droid Serif', serif;
+  font-weight: bold;
+  font-style: italic;
+  color: grey;
+  font-size: 80px;
+  text-align: center;
+  display: inline;
+  margin: 0 auto;
+}
+
+.adventureAcademy {
+  text-align: center;
+}
